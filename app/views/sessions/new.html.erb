@@ -1,0 +1,20 @@
+
+<%= form_for :session, url: login_path do |f| %>
+	<p>
+		<%= f.label :email %> <br />
+		<%= f.text_field :email %>
+	</p>
+	<p>
+		<%= f.label :password %> <br />
+		<%= f.password_field :password %>
+	</p>
+	<p>
+		<%= f.label :remember_me do %>
+			<%= f.check_box :remember_me %>
+			<span>Remember me on this computer</span>
+		<% end %> 
+	</p>
+	<p>
+		<%= f.submit "Login" %>
+	</p>
+<% end %>

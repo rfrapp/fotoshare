@@ -1,0 +1,44 @@
+
+<%= form_for @user do |f| %>
+	<% if @user.errors.any? %>
+		<div id="errorlist">
+			You have <%= pluralize(@user.errors.count, "error") %>
+
+			<ul>
+				<% @user.errors.full_messages.each do |msg| %>
+					<li><%= msg %></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+
+	<p>
+		<%= f.label :firstname %> <br />
+		<%= f.text_field :firstname %>
+	</p>
+
+	<p>
+		<%= f.label :lastname %> <br />
+		<%= f.text_field :lastname %> 
+	</p>
+
+	<p>
+		<%= f.label :username %> <br />
+		<%= f.text_field :username %>
+	</p>
+	<p>
+		<%= f.label :email %> <br />
+		<%= f.text_field :email %>
+	</p>
+	<p>
+		<%= f.label :password %> <br />
+		<%= f.password_field :password %>
+	</p>
+
+	<p>
+		<%= f.label "Confirm Password" %> <br />
+		<%= f.password_field :password_confirmation %>
+	</p>
+
+	<%= f.submit %>
+<% end %>

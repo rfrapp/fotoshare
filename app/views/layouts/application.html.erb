@@ -1,14 +1,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Fotoshare</title>
+  <title>FotoShare</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
 <body>
 
-<%= yield %>
+<div id="maincontainer">
+	<%= render "shared/header" %>
+
+	<div id="maincontent">
+		<%= yield %>
+	</div>
+</div>
 
 </body>
 </html>
