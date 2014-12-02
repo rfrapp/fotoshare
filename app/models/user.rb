@@ -1,9 +1,24 @@
 class User < ActiveRecord::Base
+
+	# =========================================================================
+	# Pseudo Attributes 
+	# =========================================================================	
 	attr_accessor :remember_token 
+	attr_accessor :password_confirmation
+	# =========================================================================
+
+	# =========================================================================
+	# Associations 
+	# =========================================================================
+	has_many :relationships 
+	has_many :relations, :through => :relationships 
+	# =========================================================================
 
 	before_save { self.email = email.downcase }
-	attr_accessor :password_confirmation
-	
+
+	# =========================================================================
+	# Validation
+	# =========================================================================	
 	validates :password, presence: true,
 						 length: { minimum: 8 }
 	validates_confirmation_of :password 
@@ -17,7 +32,12 @@ class User < ActiveRecord::Base
 	          presence: true
 
 	has_secure_password
+	# =========================================================================
 
+	# =========================================================================
+	# Helper methods 
+	# =========================================================================
+	
 	# Returns the hash digest of the given string.
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -43,5 +63,6 @@ class User < ActiveRecord::Base
     def forget 
     	update_attribute(:remember_digest, nil)
     end 
+    # =========================================================================
 
 end

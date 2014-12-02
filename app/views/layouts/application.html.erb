@@ -10,10 +10,15 @@
 
 <div id="maincontainer">
 	<%= render "shared/header" %>
-
+	
+	<% flash.each do |key, value| %>
+	  <%= content_tag :div, value, class: "flash #{key}" %>
+	<% end %>
+	
 	<div id="maincontent">
 		<%= yield %>
 	</div>
+	
 </div>
 
 </body>
