@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   get 'sessions/destroy'
 
   get 'signup' => 'users#new'
-  get 'find'   => 'users#find'
+  get 'find'   => 'users#index'
   post 'signup' => 'users#create'
 
   get 'login' => 'sessions#new'
