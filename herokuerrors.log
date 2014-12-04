@@ -1,12 +1,5 @@
-Running `rails console` attached to terminal... up, run.8863
-^C/app/vendor/ruby-2.0.0/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in `require': Interrupt
-	from /app/vendor/ruby-2.0.0/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in `require'
-	from /app/vendor/bundle/ruby/2.0.0/gems/bundler-1.6.3/lib/bundler/definition.rb:1:in `<top (required)>'
-	from /app/vendor/bundle/ruby/2.0.0/gems/bundler-1.6.3/lib/bundler.rb:153:in `definition'
-	from /app/vendor/bundle/ruby/2.0.0/gems/bundler-1.6.3/lib/bundler.rb:116:in `setup'
-	from /app/vendor/bundle/ruby/2.0.0/gems/bundler-1.6.3/lib/bundler/setup.rb:7:in `<top (required)>'
-	from /app/vendor/ruby-2.0.0/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in `require'
-	from /app/vendor/ruby-2.0.0/lib/ruby/2.0.0/rubygems/core_ext/kernel_require.rb:55:in `require'
-	from /app/config/boot.rb:4:in `<top (required)>'
-	from /app/bin/rails:7:in `require_relative'
-	from /app/bin/rails:7:in `<main>'
+Running `rails console` attached to terminal... up, run.4267
+Loading production environment (Rails 4.2.0.rc1)
+irb(main):001:0> ^C
+irb(main):001:0> ^C
+irb(main):001:0> 
