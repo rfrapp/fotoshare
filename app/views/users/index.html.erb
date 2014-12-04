@@ -6,7 +6,7 @@
 		<% if user.id != current_user.id %>
 			<tr>
 				<td>
-					<strong><%= user.username %></strong>
+					<strong><%= link_to user.username, user %></strong>
 				</td>
 				<td>
 					<span class="greyed italic">(<%= user.firstname + user.lastname %>)</span>
@@ -14,6 +14,11 @@
 				<td>
 					<%= link_to "Add Friend", relationships_path(:other_user_id => user, :relationship_type => "friend"), :method => :post %>
 				</td>
+				<% if current_user.admin? && !current_user?(user) %>
+				    <td>
+				    	<%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %>
+				    </td>
+				<% end %>
 			</tr>
 		<% end %>
 	<% end %>

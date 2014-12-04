@@ -4,4 +4,10 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   include SessionsHelper
+  before_action :set_host 
+
+  private 
+  	def set_host 
+  		ActionMailer::Base.default_url_options = {:host => request.host_with_port}
+  	end 
 end
