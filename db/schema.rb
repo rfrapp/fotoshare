@@ -11,31 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141203181748) do
+ActiveRecord::Schema.define(version: 20141204175947) do
 
   create_table "relationships", force: true do |t|
     t.integer  "user_id"
     t.integer  "other_user_id"
-    t.string   "relationship_type"
+    t.string   "relationship_type", limit: 255
     t.boolean  "accepted"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|
-    t.string   "firstname"
-    t.string   "lastname"
-    t.string   "username"
-    t.string   "email"
-    t.string   "password_digest"
-    t.string   "remember_digest"
+    t.string   "firstname",         limit: 255
+    t.string   "lastname",          limit: 255
+    t.string   "username",          limit: 255
+    t.string   "email",             limit: 255
+    t.string   "password_digest",   limit: 255
+    t.string   "remember_digest",   limit: 255
     t.datetime "last_login"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "admin"
-    t.string   "activation_digest"
-    t.boolean  "activated",         default: false
+    t.string   "activation_digest", limit: 255
+    t.boolean  "activated",                     default: false
     t.datetime "activated_at"
+    t.string   "reset_digest"
+    t.datetime "reset_sent_at"
   end
 
 end

@@ -6,6 +6,7 @@ class User < ActiveRecord::Base
 	attr_accessor :remember_token 
 	attr_accessor :password_confirmation
 	attr_accessor :activation_token 
+	attr_accessor :reset_token 
 	# =========================================================================
 
 	# =========================================================================
@@ -40,6 +41,10 @@ class User < ActiveRecord::Base
 	# Helper methods 
 	# =========================================================================
 	
+	def password_reset_expired?
+		reset_sent_at < 2.hours.ago 
+	end 
+
 	# Returns the hash digest of the given string.
     def User.digest(string)
         cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST :
@@ -83,6 +88,16 @@ class User < ActiveRecord::Base
     def create_activation_digest
     	self.activation_token = User.new_token 
     	self.activation_digest = User.digest(activation_token)
+    end 
+
+    def create_reset_digest 
+    	self.reset_token = User.new_token 
+    	update_attribute(:reset_digest, User.digest(reset_token))
+    	update_attribute(:reset_sent_at, Time.zone.now)
+    end 
+
+    def send_password_reset_email
+    	UserMailer.password_reset(self).deliver_now 
     end 
     # =========================================================================
 
