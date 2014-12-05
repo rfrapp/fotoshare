@@ -2,7 +2,7 @@ class RelationshipsController < ApplicationController
 
 	def create
 		@relationship = current_user.relationships.build(:other_user_id => params[:other_user_id], :relationship_type => params[:relationship_type])
-		@relationship.accepted = false 
+		@relationship.status = "pending" 
 
 		if @relationship.save 
 			flash[:success] = "Request for relationship sent."

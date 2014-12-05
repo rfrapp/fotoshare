@@ -1,13 +1,16 @@
 
 <h1>Hello <%= @user.username %>!</h1>
 
-<h2>Friends</h2>
+<h2>Pending Relationship Requests</h2>
 
 <ul>
 	<% for r in @user.relationships %>
-		<li>
-			<%= r.relationship.username %>
-			<%= link_to "remove", r, :method => :delete %> 
-		</li>
+		<% if r.status == "pending" %>
+			<li>
+				<%= r.relationship.username %>
+				Type: <%= r.relationship_type %> 
+				<%= link_to "remove", r, :method => :delete %> 
+			</li>
+		<% end %>
 	<% end %>
 </ul>

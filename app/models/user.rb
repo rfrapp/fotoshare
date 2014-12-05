@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
 	# Associations 
 	# =========================================================================
 	has_many :relationships 
-	has_many :relations, :through => :relationships 
+	has_many :pending_relationships, -> { where(relationships: { status: :pending }) },
+	         :through => :relationships, :source => :relationship
 	# =========================================================================
 
 	before_save :downcase_email 

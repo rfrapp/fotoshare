@@ -11,13 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141204175947) do
+ActiveRecord::Schema.define(version: 20141205145005) do
 
   create_table "relationships", force: true do |t|
     t.integer  "user_id"
     t.integer  "other_user_id"
     t.string   "relationship_type", limit: 255
-    t.boolean  "accepted"
+    t.string   "status"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
