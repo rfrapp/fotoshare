@@ -10,16 +10,46 @@
 	<% end %>
 </ul>
 
-<h2>Pending Relationship Requests</h2>
+<h2>Relationships</h2>
+<ul>
+	<% @user.relationships.each do |r| %>
+		<li>
+			<%= r.relationship.username %>
+			Group: <%= r.usergroup.name %> 
+		</li>
+	<% end %>
+</ul>	
+
+<h2>Inverse Relationships</h2>
+<ul>
+	<% @user.inverse_relationships.each do |r| %>
+		<li>
+			<%= r.user.username %>
+			Group: <%= r.usergroup.name %> 
+		</li>
+	<% end %>
+</ul>
+
+<h2>Pending Relationship Requests to you</h2>
+<ul>
+	<% for r in @user.inverse_pending_relationships %>
+		<li>
+			<%= r.relationship.username %>
+			Group: <%= r.usergroup.name %> 
+			<%= link_to "accept", relationship_path(r, :status => "accept"), :method => :put %>
+			<%= link_to "ignore", relationship_path(r, :status => "ignore"), :method => :put %>
+		</li>
+	<% end %>
+</ul>
+
+<h2>Pending Relationship Requests from you</h2>
 
 <ul>
-	<% for r in @user.relationships %>
-		<% if r.status == "pending" %>
-			<li>
-				<%= r.relationship.username %>
-				Group: <%= r.usergroup.name %> 
-				<%= link_to "remove", r, :method => :delete %> 
-			</li>
-		<% end %>
+	<% for r in @user.pending_relationships %>
+		<li>
+			<%= r.relationship.username %>
+			Group: <%= r.usergroup.name %> 
+			<%= link_to "remove", r, :method => :delete %> 
+		</li>
 	<% end %>
 </ul>

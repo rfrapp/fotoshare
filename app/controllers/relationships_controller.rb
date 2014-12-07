@@ -14,11 +14,31 @@ class RelationshipsController < ApplicationController
 		end
 	end	
 
-	def destroy
+	def update 
 		@relationship = Relationship.find(params[:id])
+		@relationship.update_attribute(:status, params[:status])
+
+		message = ""
+
+		if params[:status] == "accept"
+			message += "Accepted "
+		else 
+			message += "Ignored "
+		end
+
+		message += @relationship.user.firstname + " "
+		message += @relationship.user.lastname 
+		message += "'s request to add you to their group \""
+		message += @relationship.usergroup.name + '"'
+		flash[:success] = message 
+		redirect_to current_user 
+	end 
+
+	def destroy
+		@relationship = current_user.relationships.find(params[:id])
 		@relationship.destroy 
 		flash[:success] = "Removed Relationship."
-		redirect_to root_url 
+		redirect_to current_user 
 	end
 
 end

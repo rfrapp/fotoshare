@@ -13,9 +13,17 @@ class User < ActiveRecord::Base
 	# Associations 
 	# =========================================================================
 	has_many :user_groups 
-	has_many :relationships 
-	has_many :pending_relationships, -> { where(relationships: { status: :pending }) },
-	         :through => :relationships, :source => :relationship
+	has_many :relationships, -> { where(relationships: { status: :accept }) }
+	has_many :inverse_relationships, -> { where(relationships: { status: :accept }) },
+			 :class_name => "Relationship", :foreign_key => :other_user_id 
+
+	has_many :pending_relationships, -> { where(relationships: { status: :pending }) } ,
+			 :class_name => "Relationship"
+	has_many :inverse_pending_relationships, -> { where(relationships: { status: :pending }) } ,
+			 :class_name => "Relationship", :foreign_key => :other_user_id
+	# has_many :pending_relationships, -> { where(relationships: { status: :pending });
+	# 		 order('UserGroup.name DESC') },
+	#          :through => :relationships, :source => :relationship
 	# =========================================================================
 
 	before_save :downcase_email 
