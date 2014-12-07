@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 	# =========================================================================
 	# Associations 
 	# =========================================================================
+	has_many :user_groups 
 	has_many :relationships 
 	has_many :pending_relationships, -> { where(relationships: { status: :pending }) },
 	         :through => :relationships, :source => :relationship
@@ -80,6 +81,8 @@ class User < ActiveRecord::Base
     def activate 
     	update_attribute(:activated, true)
     	update_attribute(:activated_at, Time.zone.now)
+    	UserGroup.insert_new(self, "Friends")
+    	UserGroup.insert_new(self, "Family")
     end
 
     def send_activation_email

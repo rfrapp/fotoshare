@@ -12,7 +12,13 @@
 					<span class="greyed italic">(<%= user.firstname + user.lastname %>)</span>
 				</td>
 				<td>
-					<%= link_to "Add Friend", relationships_path(:other_user_id => user, :relationship_type => "friend"), :method => :post %>
+					<ul>
+						<% current_user.user_groups.each do |group| %>
+							<li>
+								<%= link_to "Add to \"#{group.name}\"", relationships_path(:other_user_id => user, :group_id => group), :method => :post %> 
+							</li>	
+						<% end %>
+					</ul>
 				</td>
 				<% if current_user.admin? && !current_user?(user) %>
 				    <td>
