@@ -12,23 +12,17 @@
 
 <h2>Relationships</h2>
 <ul>
-	<% @user.relationships.each do |r| %>
+	<% @relationships.each do |r| %>
 		<li>
-			<%= r.relationship.username %>
+			<% if r.relationship.username != current_user.username %>
+				<%= r.relationship.username %>
+			<% else %>
+				<%= r.user.username %>
+			<% end %>
 			Group: <%= r.usergroup.name %> 
 		</li>
 	<% end %>
 </ul>	
-
-<h2>Inverse Relationships</h2>
-<ul>
-	<% @user.inverse_relationships.each do |r| %>
-		<li>
-			<%= r.user.username %>
-			Group: <%= r.usergroup.name %> 
-		</li>
-	<% end %>
-</ul>
 
 <h2>Pending Relationship Requests to you</h2>
 <ul>
