@@ -12,10 +12,6 @@
 	<%= render "shared/header" %>
 	
 	<div id="maincontent" class="container">
-		
-		<% flash.each do |key, value| %>
-		  <%= content_tag :div, value, class: "flash #{key}" %>
-		<% end %>
 
 		<section class="mainsection">
 			<header class="sectionhead">
@@ -30,6 +26,14 @@
 			
 			<div class="mainsectionbodycontainer">
 				<div class="mainsectionbodycontent">
+					<% if flash.any? %>
+						<div id="error_explanation">
+							<% flash.each do |key, value| %>
+							  <%= content_tag :div, value, class: "alert-#{key} alert" %>
+							<% end %>
+						</div>
+					<% end %>
+
 					<%= yield %>
 				</div>
 			</div>
