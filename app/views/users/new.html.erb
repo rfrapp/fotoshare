@@ -1,14 +1,17 @@
 
+<% provide(:title, "FotoShare - Sign up") %>
+<% provide(:maintitle, "Sign up") %>
+
 <%= form_for @user do |f| %>
 	<%= render 'shared/error_messages' %>
 
 	<p>
-		<%= f.label :firstname %> <br />
+		<%= f.label :firstname, "First Name" %> <br />
 		<%= f.text_field :firstname %>
 	</p>
 
 	<p>
-		<%= f.label :lastname %> <br />
+		<%= f.label :lastname, "Last Name" %> <br />
 		<%= f.text_field :lastname %> 
 	</p>
 
@@ -30,5 +33,5 @@
 		<%= f.password_field :password_confirmation %>
 	</p>
 
-	<%= f.submit %>
+	<%= f.submit class: 'btn btn-primary' %>
 <% end %>

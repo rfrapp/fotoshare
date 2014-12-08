@@ -11,12 +11,30 @@
 <div id="maincontainer">
 	<%= render "shared/header" %>
 	
-	<% flash.each do |key, value| %>
-	  <%= content_tag :div, value, class: "flash #{key}" %>
-	<% end %>
-	
-	<div id="maincontent">
-		<%= yield %>
+	<div id="maincontent" class="container">
+		
+		<% flash.each do |key, value| %>
+		  <%= content_tag :div, value, class: "flash #{key}" %>
+		<% end %>
+
+		<section class="mainsection">
+			<header class="sectionhead">
+				<div class="sectionheadcontainer">
+					<div class="sectiontitle">
+						<span>
+							<%= yield(:maintitle) %>
+						</span>
+					</div>
+				</div>
+			</header>
+			
+			<div class="mainsectionbodycontainer">
+				<div class="mainsectionbodycontent">
+					<%= yield %>
+				</div>
+			</div>
+
+		</section>
 	</div>
 
 </div>

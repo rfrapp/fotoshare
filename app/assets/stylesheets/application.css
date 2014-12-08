@@ -11,5 +11,99 @@
  * file per style scope.
  *
  *= require_tree .
+ *= require twitter/bootstrap
  *= require_self
  */
+
+body
+{
+	background-color: #E9ECF1;
+}
+
+nav.topnav
+{
+	background-color: rgb(52, 73, 94);
+	border-radius: 0px;
+	color: #ffffff;
+}
+
+.navbar-inverse .navbar-nav > li > a 
+{
+	color: rgb(255, 255, 255);
+}
+
+.navbar-inverse .navbar-brand
+{
+	color: #ffffff;
+	padding-right: 40px;
+	font-size: 20px;
+}
+
+.navbar-inverse .navbar-brand:hover
+{
+	color: rgb(22, 160, 133);	
+}
+
+.navbar-inverse .navbar-nav > li > a:hover
+{
+	color: rgb(22, 160, 133);
+}
+
+nav.topnav > div > ul
+{
+	margin-left: 10px;
+}
+
+#maincontent
+{
+	width: 1200px;
+	margin: 0 auto;
+	/*background-color: #ffffff;*/
+	margin-bottom: 50px;
+}
+
+.mainsection
+{
+	float: left;
+	width: 800px;
+}
+
+.sectionhead
+{
+	width: 100%;
+	background-color: #323A45;
+	float: left;
+	color: #ffffff;
+}
+
+.sectionheadcontainer
+{
+}
+
+.sectiontitle
+{
+	padding: 10px;
+	padding-left: 20px;
+}
+
+.mainsectionbodycontainer
+{
+	background-color: #ffffff;
+	padding-bottom: 10px;
+	float: left;
+	width: 100%;
+}
+
+.mainsectionbodycontent
+{
+	float: left;
+	margin: 10px;
+	margin-left: 20px;
+}
+
+#error_explanation
+{
+	float: left;
+	width: 760px;
+}
+

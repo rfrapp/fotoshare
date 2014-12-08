@@ -38,6 +38,10 @@ gem 'bootstrap-will_paginate', '0.0.10'
 gem 'compass'
 gem 'haml' # for SASS
 
+gem 'therubyracer' 
+gem 'less-rails-bootstrap'
+gem 'autoprefixer-rails'
+
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
   gem 'byebug',      '3.4.0'

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 1
+  name: MyString
+  last_upload: 2014-12-07 19:18:58
+
+two:
+  user_id: 1
+  name: MyString
+  last_upload: 2014-12-07 19:18:58

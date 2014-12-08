@@ -1,27 +1,42 @@
 
-<header id="mainheader">
-	<!-- Put logo here -->
-
-	<nav id="mainnav">
-		<ul>
-			<li>
-				<a href="<%= root_path %>">Home</a>
-			</li>
-			<% if logged_in? %>
-				<li>
-					<%= link_to "Profile", user_path(current_user) %>
-				</li>
-				<li>
-					<%= link_to "Log out", logout_path, method: "delete" %>
-				</li>
-			<% else %>
-				<li>
-					<%= link_to "Login", login_path %>
-				</li>
-				<li>
-					<%= link_to "Sign up", signup_path %>
-				</li>
-			<% end %>
-		</ul>
-	</nav>
-</header>
+<div class="row demo-row">
+    <div class="col-xs-12">
+        <nav class="navbar navbar-inverse navbar-embossed topnav" role="navigation">
+      		<div class="navbar-header">
+        		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
+          			<span class="sr-only">Toggle navigation</span>
+        		</button>
+        		<a class="navbar-brand" href="<%= root_path %>">FotoShare</a>
+      		</div>
+      		<div class="collapse navbar-collapse" id="navbar-collapse-01">
+        		<ul class="nav navbar-nav navbar-left">
+        			<% if logged_in? %>
+        				<li>
+        					<%= link_to "Profile", user_path(current_user) %>
+        				</li>
+        				<li>
+        					<%= link_to "Log out", logout_path, method: "delete" %>
+        				</li>
+        			<% else %>
+        				<li>
+        					<%= link_to "Login", login_path %>
+        				</li>
+        				<li>
+        					<%= link_to "Sign up", signup_path %>
+        				</li>
+        			<% end %>
+         		</ul>
+         		<form class="navbar-form navbar-right" action="#" role="search">
+          			<div class="form-group">
+            			<div class="input-group">
+              				<input class="form-control" id="navbarInput-01" type="search" placeholder="Search">
+				            <span class="input-group-btn">
+				              <button type="submit" class="btn"><span class="fui-search"></span></button>
+				            </span>
+            			</div>
+          			</div>
+        		</form>
+      		</div><!-- /.navbar-collapse -->
+    	</nav><!-- /navbar -->
+    </div>
+</div> <!-- /row -->

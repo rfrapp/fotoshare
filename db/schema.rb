@@ -11,7 +11,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141207183136) do
+ActiveRecord::Schema.define(version: 20141208011858) do
+
+  create_table "albums", force: true do |t|
+    t.integer  "user_id"
+    t.string   "name"
+    t.datetime "last_upload"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "relationships", force: true do |t|
     t.integer  "user_id"
