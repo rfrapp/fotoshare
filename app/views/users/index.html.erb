@@ -1,4 +1,6 @@
 
+<% provide(:maintitle, "Find Users") %>
+
 <%= will_paginate %> 
 
 <table border="0">
@@ -9,7 +11,7 @@
 					<strong><%= link_to user.username, user %></strong>
 				</td>
 				<td>
-					<span class="greyed italic">(<%= user.firstname + user.lastname %>)</span>
+					<span class="greyed italic">(<%= user.firstname + " " + user.lastname %>)</span>
 				</td>
 				<td>
 					<ul>

@@ -1,14 +1,12 @@
 
-<% provide(:title, "Forgot password") %>
-<h1>Forgot password</h1>
+<% provide(:title, "FotoShare - Forgot password") %>
+<% provide(:maintitle, "Forgot Password") %>
 
 <%= form_for(:password_reset, url: password_resets_path) do |f| %>
-    <p>
+    <div class="form-group">
   	  	<%= f.label :email %> <br />
-  	  	<%= f.text_field :email %>
-    </p>
+  	  	<%= f.text_field :email, :class => "form-control" %>
+    </div>
 
-	<p>
-  		<%= f.submit "Submit" %>
-	</p>
+  	<%= f.submit "Submit", :class => "btn btn-primary" %>
 <% end %>

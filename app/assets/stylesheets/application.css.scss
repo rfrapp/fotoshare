@@ -97,13 +97,32 @@ nav.topnav > div > ul
 .mainsectionbodycontent
 {
 	float: left;
-	margin: 10px;
-	margin-left: 20px;
+	margin: 20px;
+	width: 760px;
 }
 
 #error_explanation
 {
 	float: left;
 	width: 760px;
+}
+
+.field_with_errors 
+{
+    @extend .control-group;
+    @extend .error;
+
+    display: inline-block;
+}
+
+.field_with_errors
+{
+	color: #a94442;
+	display: inline;
+}
+
+.field_with_errors input
+{
+	border: 1px solid #a94442;
 }
 
