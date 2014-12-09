@@ -29,58 +29,60 @@
             			</div>
           			</div>
         		</form>
-         		<ul class="nav navbar-nav navbar-right rightnav">
-         			<li class="dropdown">
-	                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	                    		<span class="fui-mail"></span> 
-	                    		<% if current_user.inverse_pending_relationships.length > 0 %>
-									<span class="navbar-unread">
-										<%= current_user.inverse_pending_relationships.length %>
-									</span>
-	                    		<% end %>
-	                    		<b class="caret"></b>
-	                    	</a>
-	                    <span class="dropdown-arrow"></span>
-	                    <ul class="dropdown-menu">
-		                    <% if current_user.inverse_pending_relationships.length == 0 %>
-								<li>
-									<a href="">(no relationship requests)</a>
-								</li>
-							<% else %>
-								<% for r in current_user.inverse_pending_relationships %>
+        		<% if logged_in? %>
+	         		<ul class="nav navbar-nav navbar-right rightnav">
+	         			<li class="dropdown">
+		                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		                    		<span class="fui-mail"></span> 
+		                    		<% if current_user.inverse_pending_relationships.length > 0 %>
+										<span class="navbar-unread">
+											<%= current_user.inverse_pending_relationships.length %>
+										</span>
+		                    		<% end %>
+		                    		<b class="caret"></b>
+		                    	</a>
+		                    <span class="dropdown-arrow"></span>
+		                    <ul class="dropdown-menu">
+			                    <% if current_user.inverse_pending_relationships.length == 0 %>
 									<li>
-										<%= r.relationship.firstname + " " + r.relationship.lastname %>
-										wants you add you to: <%= r.group.name %>
+										<a href="">(no relationship requests)</a>
 									</li>
-								<% end %>
-		                    <% end %>
-	                    </ul>
-	                </li>
-         			<li class="dropdown">
-	                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">+ <b class="caret"></b></a>
-	                    <span class="dropdown-arrow"></span>
-	                    <ul class="dropdown-menu">
-		                    <li><a href="#">Add a new album</a></li>
-		                    <li><a href="#">Upload a new photo</a></li>
-	                    </ul>
-	                </li>
-         			<li class="dropdown">
-	                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-	                    	<span class="fui-user"></span> 
-	                    	<b class="caret"></b>
-	                    </a>
-	                    <span class="dropdown-arrow"></span>
-	                    <ul class="dropdown-menu">
-		                    <li>
-		                    	<%= link_to "Profile", user_path(current_user) %>
-		                    </li>
-		                    <li class="divider"></li>
-		                    <li>
-		                    	<%= link_to "Log out", logout_path, method: "delete" %>
-		                    </li>
-	                    </ul>
-	                </li>
-         		</ul>
+								<% else %>
+									<% for r in current_user.inverse_pending_relationships %>
+										<li>
+											<%= r.relationship.firstname + " " + r.relationship.lastname %>
+											wants you add you to: <%= r.group.name %>
+										</li>
+									<% end %>
+			                    <% end %>
+		                    </ul>
+		                </li>
+	         			<li class="dropdown">
+		                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">+ <b class="caret"></b></a>
+		                    <span class="dropdown-arrow"></span>
+		                    <ul class="dropdown-menu">
+			                    <li><a href="#">Add a new album</a></li>
+			                    <li><a href="#">Upload a new photo</a></li>
+		                    </ul>
+		                </li>
+	         			<li class="dropdown">
+		                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+		                    	<span class="fui-user"></span> 
+		                    	<b class="caret"></b>
+		                    </a>
+		                    <span class="dropdown-arrow"></span>
+		                    <ul class="dropdown-menu">
+			                    <li>
+			                    	<%= link_to "Profile", user_path(current_user) %>
+			                    </li>
+			                    <li class="divider"></li>
+			                    <li>
+			                    	<%= link_to "Log out", logout_path, method: "delete" %>
+			                    </li>
+		                    </ul>
+		                </li>
+	         		</ul>
+         		<% end %>
       		</div><!-- /.navbar-collapse -->
     	</nav><!-- /navbar -->
     </div>
