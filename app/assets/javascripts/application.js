@@ -15,3 +15,21 @@
 //= require twitter/bootstrap
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function() 
+{
+	$("#navbarInput-01").focusin(function() 
+	{
+		console.log("here focus");
+		$(this).addClass("focus");
+		$(this).animate({ width: '300px' }, 500);
+	});
+
+	$("#navbarInput-01").focusout(function() 
+	{
+		console.log("here");
+		$(this).removeClass("focus");
+		$(this).addClass("notfocus");
+		$(this).animate({ width: '200px' }, 500);
+	});
+});

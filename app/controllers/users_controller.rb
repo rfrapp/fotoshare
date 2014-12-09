@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-	before_action :logged_in_user, only: [:find, :edit, :update, :destroy]
-	before_action :correct_user, only: [:edit, :update]
+	before_action :logged_in_user, only: [:find, :edit, :update, :destroy, :settings]
+	before_action :correct_user, only: [:edit, :update, :settings]
 	before_action :admin_user, only: :destroy 
 
 	def new
@@ -44,6 +44,10 @@ class UsersController < ApplicationController
 		else 
 			render "new"
 		end
+	end 
+
+	def settings 
+
 	end 
 
 	def destroy
