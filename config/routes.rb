@@ -1,4 +1,14 @@
 Rails.application.routes.draw do
+  get 'user_groups/index'
+
+  get 'user_groups/new'
+
+  get 'user_groups/create'
+
+  get 'user_groups/edit'
+
+  get 'user_groups/update'
+
   get 'password_resets/new'
 
   get 'password_resets/edit'
@@ -16,6 +26,8 @@ Rails.application.routes.draw do
 
   get 'signup' => 'users#new'
   get 'find'   => 'users#index'
+  get 'profile' => 'users#show'
+  get 'profile/edit' => 'users#edit'
   post 'signup' => 'users#create'
 
   get 'login' => 'sessions#new'

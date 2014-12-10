@@ -1,32 +1,35 @@
 
+<% provide(:title, "FotoShare - Edit Profile") %>
+<% provide(:maintitle, "Edit Profile") %>
+
 <%= form_for @user do |f| %>
 	<%= render 'shared/error_messages' %>
 	
-	<p>
+	<div class="form-group">
 		<%= f.label :firstname %> <br />
-		<%= f.text_field :firstname %>
-	</p>
-	<p>
+		<%= f.text_field :firstname, :class => "form-control" %>
+	</div>
+	<div class="form-group">
 		<%= f.label :lastname %> <br />
-		<%= f.text_field :lastname %>
-	</p>
-	<p>
+		<%= f.text_field :lastname, :class => "form-control" %>
+	</div>
+	<div class="form-group">
 		<%= f.label :username %> <br />
-		<%= f.text_field :username, disabled: true %>
-	</p>
-	<p>
+		<%= f.text_field :username, :disabled => "disabled", :class => "form-control" %>
+	</div>
+	<div class="form-group">
 		<%= f.label :email %> <br />
-		<%= f.text_field :email %>
-	</p>
-	<p>
+		<%= f.text_field :email, :class => "form-control" %>
+	</div>
+	<div class="form-group">
 		<%= f.label :password %> <br />
-		<%= f.password_field :password %>
-	</p>
-	<p>
+		<%= f.password_field :password, :class => "form-group" %>
+	</div>
+	<div class="form-group">
 		<%= f.label :password_confirmation %> <br />
-		<%= f.password_field :password_confirmation %>
-	</p>
-	<p>
-		<%= f.submit "Edit Profile" %>
-	</p>
+		<%= f.password_field :password_confirmation, :class => "form-control" %>
+	</div>
+	<div class="form-group">
+		<%= f.submit "Edit Profile", :class => "btn btn-primary" %>
+	</div>
 <% end %>

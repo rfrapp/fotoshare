@@ -91,6 +91,7 @@ class User < ActiveRecord::Base
     	update_attribute(:activated_at, Time.zone.now)
     	UserGroup.insert_new(self, "Friends")
     	UserGroup.insert_new(self, "Family")
+    	UserGroup.insert_new(self, "Blocked Users")
     end
 
     def send_activation_email

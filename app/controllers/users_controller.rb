@@ -2,20 +2,25 @@ class UsersController < ApplicationController
 	before_action :logged_in_user, only: [:find, :edit, :update, :destroy, :settings]
 	before_action :correct_user, only: [:edit, :update, :settings]
 	before_action :admin_user, only: :destroy 
+	before_action :blocked_user, only: :show 
 
 	def new
 		@user = User.new 
 	end 
 
 	def show
-		@user = User.find(params[:id])
+		if !@user 
+			@user = current_user 
+		end 
+
+		# @user = User.find(params[:id])
 		@relationships = @user.relationships + @user.inverse_relationships
 
 		redirect_to root_url and return unless @user.activated? 
 	end
 
 	def edit
-		@user = User.find(params[:id])
+		# @user = User.find(params[:id])
 	end
 
 	def update 
@@ -61,17 +66,43 @@ private
 		params.require(:user).permit(:firstname, :lastname, :username, :email, :password, :password_confirmation)
 	end 
 
+	# Redirects a user if they are on the Blocked Users
+	# list of the person who's profile they're viewing
+	def blocked_user
+		is_blocked = false 
+
+		if params[:id]
+			@user = User.find(params[:id])
+
+			for r in current_user.inverse_relationships
+				if r.usergroup.name == "Blocked Users" && r.user.id == @user.id 
+					is_blocked = true 
+					break 
+				end 
+			end 
+		end
+
+		if is_blocked
+			flash[:info] = "This user has chosen to keep their profile hidden."
+			redirect_to root_url 
+		end 
+	end 
+
 	# Confirms a logged-in user.
     def logged_in_user
         unless logged_in?
         	store_location 
-            flash[:danger] = "Please log in."
+            flash[:danger] = "Please log in to view this page."
             redirect_to login_url
         end
     end
 
     def correct_user
-    	@user = User.find(params[:id])
+    	if params[:id]
+	    	@user = User.find(params[:id])
+	    else 
+	    	@user = current_user 
+	    end 
     	redirect_to(root_url) unless current_user?(@user)
     end 
 
