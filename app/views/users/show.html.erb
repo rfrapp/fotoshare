@@ -1,7 +1,11 @@
 
-<% provide(:maintitle, "Hello #{@user.username}!") %>
+<% if @user.id == current_user.id %>
+	<% provide(:maintitle, "Hello #{@user.username}!") %>
+<% else %>
+	<% provide(:maintitle, "#{@user.name}'s Profile") %>
+<% end %>
 
-<h3>Your Groups</h3>
+<h3>Groups</h3>
 <ul>
 	<% @user.user_groups.each do |group| %>
 		<li>
@@ -24,25 +28,27 @@
 	<% end %>
 </ul>	
 
-<h3>Pending Relationship Requests to you</h3>
-<ul>
-	<% for r in @user.inverse_pending_relationships %>
-		<li>
-			<%= r.relationship.username %>
-			Group: <%= r.usergroup.name %> 
-			<%= link_to "accept", relationship_path(r, :status => "accept"), :method => :put %>
-			<%= link_to "ignore", relationship_path(r, :status => "ignore"), :method => :put %>
-		</li>
-	<% end %>
-</ul>
+<% if @user.id == current_user.id %>
+	<h3>Pending Relationship Requests to you</h3>
+	<ul>
+		<% for r in @user.inverse_pending_relationships %>
+			<li>
+				<%= r.relationship.username %>
+				Group: <%= r.usergroup.name %> 
+				<%= link_to "accept", relationship_path(r, :status => "accept"), :method => :put %>
+				<%= link_to "ignore", relationship_path(r, :status => "ignore"), :method => :put %>
+			</li>
+		<% end %>
+	</ul>
 
-<h3>Pending Relationship Requests from you</h3>
-<ul>
-	<% for r in @user.pending_relationships %>
-		<li>
-			<%= r.relationship.username %>
-			Group: <%= r.usergroup.name %> 
-			<%= link_to "remove", r, :method => :delete %> 
-		</li>
-	<% end %>
-</ul>
+	<h3>Pending Relationship Requests from you</h3>
+	<ul>
+		<% for r in @user.pending_relationships %>
+			<li>
+				<%= r.relationship.username %>
+				Group: <%= r.usergroup.name %> 
+				<%= link_to "remove", r, :method => :delete %> 
+			</li>
+		<% end %>
+	</ul>
+<% end %>

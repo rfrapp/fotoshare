@@ -43,9 +43,9 @@ class RelationshipsController < ApplicationController
 
 	def destroy
 		@relationship = current_user.relationships.find(params[:id])
-						|| current_user.pending_relationships.find(params[:id])
-						|| current_user.inverse_relationships.find(params[:id])
-						|| current_user.inverse_pending_relationships.find(params[:id])
+		@relationship ||= current_user.pending_relationships.find(params[:id])
+		@relationship ||= current_user.inverse_relationships.find(params[:id])
+		@relationship ||= current_user.inverse_pending_relationships.find(params[:id])
 
 		@relationship.destroy 
 		flash[:success] = "Removed Relationship."
@@ -56,7 +56,8 @@ class RelationshipsController < ApplicationController
 		def check_other_user_groups(other_user_id, group_id)
 			other_user = User.find(other_user_id)
 			group  = UserGroup.find(group_id)
-			groups = other_user.user_groups.find_by(name: group.name)
+			groups = [] 
+			groups << other_user.user_groups.find_by(name: group.name)
 
 			if groups.nil? || groups.length == 0
 				UserGroup.insert_new(other_user, group.name)

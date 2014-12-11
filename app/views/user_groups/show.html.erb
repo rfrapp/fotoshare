@@ -1,0 +1,19 @@
+
+<% provide(:title, "FotoShare - #{@group.name}") %>
+<% provide(:maintitle, "#{@group.name}") %>
+
+<h2>Members</h2>
+
+<% if @group_members %>
+	<ul>
+		<% for relationship in @group_members %>
+			<li>
+				<% if relationship.user_id == current_user.id %>
+					<%= link_to relationship.relationship.name, user_path(relationship.relationship) %>
+				<% else %>
+				<%= link_to relationship.user.name, user_path(relationship.user) %>
+				<% end %>
+			</li>
+		<% end %>
+	</ul>
+<% end %>

@@ -1,2 +1,16 @@
-<h1>UserGroups#index</h1>
-<p>Find me in app/views/user_groups/index.html.erb</p>
+
+<% provide(:title, "FotoShare - #{@user.name}'s Groups") %>
+
+<% if @user.id != current_user.id %>
+	<% provide(:maintitle, "#{@user.name}'s Groups") %>
+<% else %>
+	<% provide(:maintitle, "Your Groups") %>
+<% end %>
+
+<ul>
+	<% for g in @user.user_groups %>
+		<li>
+			<%= link_to g.name, user_group_path(:id => @user.id, :group => g.name) %>
+		</li>	
+	<% end %>
+</ul>

@@ -13,18 +13,40 @@ class UserGroupsController < ApplicationController
   def index
     id = -1 
     if params[:id] 
-      id = params[:id]
+        id = params[:id]
     else 
-      id = current_user.id 
+        id = current_user.id 
     end 
 
-    @user  = User.find(params[:id])
-    @group = UserGroup.find_by(user_id: id, name: params[:group])
-    @group_members = @user.relationships.find(user_id: @user.id, 
-                                              group_id: @group.id)
+    @user  = User.find(id)
+
   end
 
   def show
+    id = -1 
+    if params[:id] 
+        id = params[:id]
+    else 
+        id = current_user.id 
+    end 
+
+    @user  = User.find(id)
+    @group = UserGroup.find_by(user_id: id, name: params[:group])
+    @group_members = @user.relationships.where(user_id: @user.id, 
+                                               group_id: @group.id)
+    other_relationships = [] 
+    other_relationships << @user.inverse_relationships
+
+    # Append relationships for the same group name
+    # where the selected user's id is the
+    # foreign key 
+    for assoc in other_relationships
+        for r in assoc 
+            if r.usergroup.name == @group.name 
+                (@group_members ||= []) << r 
+            end 
+        end
+    end 
   end 
 
   def new
