@@ -7,8 +7,6 @@ class RelationshipsController < ApplicationController
 		@relationship = current_user.relationships.build(:other_user_id => params[:other_user_id], :group_id => params[:group_id])
 		@relationship.status = "pending" 
 
-		check_other_user_groups(params[:other_user_id], params[:group_id])
-
 		if @relationship.save 
 			flash[:success] = "Request for relationship sent."
 			redirect_to root_url 
@@ -27,6 +25,10 @@ class RelationshipsController < ApplicationController
 
 		if params[:status] == "accept"
 			message += "Accepted "
+
+			# Adds the group to the other user's groups
+			# if they don't have the group already 
+			check_other_user_groups(@relationship.other_user_id, @relationship.group_id)
 		else 
 			message += "Ignored "
 		end
@@ -41,6 +43,10 @@ class RelationshipsController < ApplicationController
 
 	def destroy
 		@relationship = current_user.relationships.find(params[:id])
+						|| current_user.pending_relationships.find(params[:id])
+						|| current_user.inverse_relationships.find(params[:id])
+						|| current_user.inverse_pending_relationships.find(params[:id])
+
 		@relationship.destroy 
 		flash[:success] = "Removed Relationship."
 		redirect_to current_user 

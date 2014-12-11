@@ -9,7 +9,10 @@ class UsersController < ApplicationController
 	end 
 
 	def show
-		if !@user 
+		if !params[:id] && !logged_in?
+			flash[:danger] = "Please log in to see your profile."
+			redirect_to root_url 
+		elsif !@user
 			@user = current_user 
 		end 
 
