@@ -50,10 +50,24 @@ class UserGroupsController < ApplicationController
   end 
 
   def new
-    @group = UserGroup.new 
+    @group = UserGroup.new
   end
 
   def create
+    @group = UserGroup.new(group_params)
+    
+    if @group.user_id != current_user.id 
+        flash[:danger] = "There was an error creating your group."
+        render "new"
+    end 
+
+    if @group.save 
+        flash[:success] = "Successfully created the group: " + @group.name + "!"
+        redirect_to root_url 
+    else 
+        render "new"
+    end 
+
   end
 
   def edit
@@ -66,6 +80,10 @@ class UserGroupsController < ApplicationController
   end 
 
   private 
+    def group_params 
+        params.require(:user_group).permit(:name, :user_id)
+    end 
+
     # Confirms a logged-in user.
     def logged_in_user
         unless logged_in?
