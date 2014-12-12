@@ -39,7 +39,10 @@ class UserGroupsController < ApplicationController
 
     # Append relationships for the same group name
     # where the selected user's id is the
-    # foreign key 
+    # foreign key.
+    # NOTE: 
+    # The first loop loops through ActiveRecord 
+    # Association objects
     for assoc in other_relationships
         for r in assoc 
             if r.usergroup.name == @group.name 

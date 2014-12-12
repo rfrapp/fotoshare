@@ -1,8 +1,8 @@
 
-<% provide(:title, "FotoShare - #{@user.name}'s Groups") %>
+<% provide(:title, "FotoShare - #{@user.username}'s Groups") %>
 
 <% if @user.id != current_user.id %>
-	<% provide(:maintitle, "#{@user.name}'s Groups") %>
+	<% provide(:maintitle, "#{@user.username}'s Groups") %>
 <% else %>
 	<% provide(:maintitle, "Your Groups") %>
 <% end %>
