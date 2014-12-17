@@ -11,6 +11,11 @@
 	<% for g in @user.user_groups %>
 		<li>
 			<%= link_to g.name, user_group_path(:id => @user.id, :group => g.name) %>
+			<span>
+				<% if @user.id == current_user.id %>
+					<%= link_to "(Edit)", edit_user_group_path(:id => @user.id, :group => g.name) %>
+				<% end %>
+			</span>
 		</li>	
 	<% end %>
 </ul>
