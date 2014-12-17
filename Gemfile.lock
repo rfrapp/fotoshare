@@ -243,6 +243,7 @@ DEPENDENCIES
   pg
   rails (~> 4.2.0.rc1)
   rails_12factor (= 0.0.2)
+  rails_serve_static_assets
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   spring
