@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title><%= yield(:title) %></title>
+    <%= stylesheet_link_tag    'vendor', media: 'all', 'data-turbolinks-track' => true %>
+    <link rel="stylesheet" media="all" href="/assets/grayscale.css?body=1" data-turbolinks-track="true">
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+</head>
+
+<body id="page-top" data-spy="scroll" data-target=".navbar-fixed-top">
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand page-scroll" href="#page-top">
+                    <i class="fa fa-play-circle"></i> FotoShare
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="#about">About</a>
+                    </li>
+                    <!-- <li>
+                        <a class="page-scroll" href="#download">Download</a>
+                    </li> -->
+                    <li>
+                        <a class="page-scroll" href="#contact">Contact</a>
+                    </li>
+                    <li>
+                        <a href="<%= signup_path %>" class="page-scroll signup-button">Sign up</a>
+                    </li>
+                    <li>
+                        <a href="<%= login_path %>" class="page-scroll">Login</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+    <!-- Intro Header -->
+    <header class="intro">
+        <div class="intro-body">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <h1 class="brand-heading">FotoShare</h1>
+                        <p class="intro-text">Share photos and stuff or don't - it's your choice.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>About FotoShare</h2>
+                <p>
+                    Ever wanted to share your photos with friends or family but you don't have a very good way to do so? Well, look no further than FotoShare! With FotoShare you can: 
+                </p>
+
+                <h3>Create albums</h3>
+                <h3>Upload photos to those albums</h3>
+                <h3>Create groups and add users to them</h3>
+                <h3>Grant other users or groups the ability to view or edit your photos</h3>
+                <h3>Comment on another user's photos or albums</h3>
+            </div>
+        </div>
+    </section>
+
+    <!-- Download Section -->
+    <!-- <section id="download" class="content-section text-center">
+        <div class="download-section">
+            <div class="container">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <h2>Download Grayscale</h2>
+                    <p>You can download Grayscale for free on the preview page at Start Bootstrap.</p>
+                    <a href="http://startbootstrap.com/template-overviews/grayscale/" class="btn btn-default btn-lg">Visit Download Page</a>
+                </div>
+            </div>
+        </div>
+    </section> -->
+
+    <!-- Contact Section -->
+    <section id="contact" class="container content-section text-center">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                <h2>Contact Start Bootstrap</h2>
+                <p>Feel free to email us to if you have any questions or feedback on FotoShare.</p>
+                <p><a href="mailto:fotoshare123@gmail.com">fotoshare123@gmail.com.com</a>
+                </p>
+                <ul class="list-inline banner-social-buttons">
+                    <li>
+                        <a href="https://github.com/rfrapp/fotoshare.git" class="btn btn-default btn-lg"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Map Section -->
+    <div id="map"></div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container text-center">
+            <p>Copyright &copy; FotoShare 2014</p>
+        </div>
+    </footer>
+
+</body>
+
+</html>
