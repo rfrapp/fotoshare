@@ -11,7 +11,7 @@ class UsersController < ApplicationController
   def show
     if !params[:id] && !logged_in?
       flash[:danger] = "Please log in to see your profile."
-      redirect_to root_url 
+      redirect_to login_path 
     elsif !@user
       @user = current_user 
     end 
@@ -20,13 +20,13 @@ class UsersController < ApplicationController
     @relationships = @user.relationships + @user.inverse_relationships
     @albums = @user.albums.paginate(page: params[:page])
 
-    redirect_to root_url and return unless @user.activated? 
+    redirect_to login_path and return unless @user.activated? 
   end
 
   def home
     if !params[:id] && !logged_in?
       flash[:danger] = "Please log in."
-      redirect_to root_url 
+      redirect_to login_path 
     elsif !@user
       @user = current_user 
     end 
@@ -59,8 +59,8 @@ class UsersController < ApplicationController
       # flash[:success] = "You have successfully created your account!"
       # redirect_to @user 
       @user.send_activation_email
-      flash[:info] = "Please check your email to activate you account"
-      redirect_to root_url 
+      flash[:info] = "Please check your email to activate your account"
+      redirect_to login_path
     else 
       render "new"
     end
@@ -99,7 +99,7 @@ class UsersController < ApplicationController
 
     if is_blocked
       flash[:info] = "This user has chosen to keep their profile hidden."
-      redirect_to root_url 
+      redirect_to login_path 
     end 
   end 
 
@@ -109,11 +109,11 @@ class UsersController < ApplicationController
     else 
       @user = current_user 
     end 
-    redirect_to(root_url) unless current_user?(@user)
+    redirect_to(login_path) unless current_user?(@user)
   end 
 
   def admin_user
-    redirect_to(root_url) unless current_user.admin? 
+    redirect_to(login_path) unless current_user.admin? 
   end 
 
 end

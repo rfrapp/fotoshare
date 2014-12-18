@@ -6,7 +6,11 @@
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-collapse-01">
           <span class="sr-only">Toggle navigation</span>
         </button>
-        <a class="navbar-brand" href="<%= root_path %>">FotoShare</a>
+        <% if logged_in? %>
+          <a class="navbar-brand" href="<%= home_path %>">FotoShare</a>
+        <% else %>
+          <a class="navbar-brand" href="<%= root_path %>">FotoShare</a>
+        <% end %>
       </div>
       <div class="collapse navbar-collapse" id="navbar-collapse-01">
         <ul class="nav navbar-nav navbar-left">

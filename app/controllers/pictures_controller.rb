@@ -7,7 +7,7 @@ class PicturesController < ApplicationController
   end
 
   def create
-    @album = Album.find(params[:album_id])
+    @album = Album.find(params[:picture][:album_id])
     @picture = @album.pictures.build(picture_params)
     if @picture.save
       flash[:success] = "Picture uploaded!"
@@ -25,7 +25,7 @@ class PicturesController < ApplicationController
   private
   
   def picture_params
-    params.require(:picture).permit(:caption, :description, :location)
+    params.require(:picture).permit(:caption, :description, :location, :public)
   end
     
   def destroy

@@ -4,6 +4,7 @@ class CreatePictures < ActiveRecord::Migration
       t.text :caption
       t.string :location
       t.references :album, index: true
+      t.boolean :public, default: true
 
       t.timestamps null: false
     end

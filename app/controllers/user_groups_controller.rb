@@ -71,7 +71,7 @@ class UserGroupsController < ApplicationController
 
     if @group.save 
         flash[:success] = "Successfully created the group: " + @group.name + "!"
-        redirect_to root_url 
+        redirect_to home_path 
     else 
         render "new"
     end 
@@ -81,14 +81,14 @@ class UserGroupsController < ApplicationController
   def edit
     
     if params[:id].to_i != current_user.id
-        redirect_to root_url 
+        redirect_to home_path 
     end 
 
     @group = UserGroup.find_by(user_id: params[:id],
                                name: params[:group])
 
     if @group.nil?
-        redirect_to root_url 
+        redirect_to home_path 
     end 
 
     @group_members = get_members(current_user, @group)
