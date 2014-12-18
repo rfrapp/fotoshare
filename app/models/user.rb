@@ -63,7 +63,13 @@ class User < ActiveRecord::Base
 
   # Feed
   def feed
-    Album.where("user_id = ?", id)
+    @group = UserGroup.find_by(user_id: id, name: "friends")
+    @group_members = @user.relationships.where(user_id: id, 
+                                               group_id: @group.id)
+    ids ||= []
+    @group_members.each { ids << |x|.id }
+    ids << id
+    Picture.where("album_id = ?", Album.where("user_id = ?", User.find_all_by_id(ids)).id)
   end
   
   def password_reset_expired?
