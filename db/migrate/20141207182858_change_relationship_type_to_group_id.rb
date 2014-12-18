@@ -5,7 +5,7 @@ class ChangeRelationshipTypeToGroupId < ActiveRecord::Migration
   # end
 
   def up
-  	execute 'ALTER TABLE relationships ALTER COLUMN relationship_type TYPE integer USING (relationship_type::integer)'
-  	execute 'ALTER TABLE relationships RENAME COLUMN relationship_type TO group_id'
+  	# execute 'ALTER TABLE relationships ALTER COLUMN relationship_type TYPE integer USING (relationship_type::integer)'
+  	# execute 'ALTER TABLE relationships RENAME COLUMN relationship_type TO group_id'
   end 
 end
