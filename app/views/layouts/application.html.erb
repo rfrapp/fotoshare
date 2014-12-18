@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title><%= yield(:title) %></title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
+  <head>
+    <title><%= yield(:title) %></title>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+    <%= csrf_meta_tags %>
+  </head>
+  <body>
 
-<div id="maincontainer">
-	<%= render "shared/header" %>
-	
-	<div class="container col-xs-12">
+    <div id="maincontainer">
+      <%= render "shared/header" %>
+      
+      <div class="container col-xs-12">
 
-		<section class="col-xs-6">
-			<header class="sectionhead col-xs-12">
-				<div class="sectionheadcontainer col-xs-12">
-					<div class="sectiontitle col-xs-12">
-						<span>
-							<%= yield(:maintitle) %>
-						</span>
-					</div>
-				</div>
-			</header>
-			
-			<div class="mainsectionbodycontainer">
-				<div class="mainsectionbodycontent">
-					<% if flash.any? %>
-						<div id="error_explanation">
-							<% flash.each do |key, value| %>
-							  <%= content_tag :div, value, class: "alert-#{key} alert" %>
-							<% end %>
-						</div>
-					<% end %>
+	<section class="col-xs-6">
+	  <header class="sectionhead col-xs-12">
+	    <div class="sectionheadcontainer col-xs-12">
+	      <div class="sectiontitle col-xs-12">
+		<span>
+		  <%= yield(:maintitle) %>
+		</span>
+	      </div>
+	    </div>
+	  </header>
+	  
+	  <div class="mainsectionbodycontainer">
+	    <div class="mainsectionbodycontent">
+	      <% if flash.any? %>
+		<div id="error_explanation">
+		  <% flash.each do |key, value| %>
+		    <%= content_tag :div, value, class: "alert-#{key} alert" %>
+		  <% end %>
+		</div>
+	      <% end %>
 
-					<%= yield %>
-				</div>
-			</div>
+	      <%= yield %>
+	    </div>
+	  </div>
 
-		</section>
-	</div>
+	</section>
+      </div>
 
-</div>
+    </div>
 
-</body>
+  </body>
 </html>

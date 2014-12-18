@@ -3,35 +3,35 @@
 <% provide(:maintitle, "Sign up") %>
 
 <%= form_for @user do |f| %>
-	<%= render 'shared/error_messages' %>
+  <%= render 'shared/error_messages' %>
 
-	<div class="form-group">
-		<%= f.label :firstname, "First Name" %> <br />
-		<%= f.text_field :firstname, :class => "form-control" %>
-	</div>
+  <div class="form-group">
+    <%= f.label :firstname, "First Name" %> <br />
+    <%= f.text_field :firstname, :class => "form-control" %>
+  </div>
 
-	<div class="form-group">
-		<%= f.label :lastname, "Last Name" %> <br />
-		<%= f.text_field :lastname, :class => "form-control" %> 
-	</div>
+  <div class="form-group">
+    <%= f.label :lastname, "Last Name" %> <br />
+    <%= f.text_field :lastname, :class => "form-control" %> 
+  </div>
 
-	<div class="form-group">
-		<%= f.label :username %> <br />
-		<%= f.text_field :username, :class => "form-control" %>
-	</div>
-	<div class="form-group">
-		<%= f.label :email %> <br />
-		<%= f.text_field :email, :class => "form-control" %>
-	</div>
-	<div class="form-group">
-		<%= f.label :password %> <br />
-		<%= f.password_field :password, :class => "form-control" %>
-	</div>
+  <div class="form-group">
+    <%= f.label :username %> <br />
+    <%= f.text_field :username, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :email %> <br />
+    <%= f.text_field :email, :class => "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :password %> <br />
+    <%= f.password_field :password, :class => "form-control" %>
+  </div>
 
-	<div class="form-group">
-		<%= f.label "Confirm Password" %> <br />
-		<%= f.password_field :password_confirmation, :class => "form-control" %>
-	</div>
+  <div class="form-group">
+    <%= f.label "Confirm Password" %> <br />
+    <%= f.password_field :password_confirmation, :class => "form-control" %>
+  </div>
 
-	<%= f.submit class: 'btn btn-primary' %>
+  <%= f.submit class: 'btn btn-primary' %>
 <% end %>

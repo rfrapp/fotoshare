@@ -3,15 +3,15 @@
 <% provide(:maintitle, "Create a new Group") %>
 
 <%= form_for @group, url: user_groups_path(@group) do |f| %>
-	<%= render 'shared/group_error_messages' %>
+  <%= render 'shared/group_error_messages' %>
 
-	<div class="form-group">
-		<%= f.hidden_field :user_id, :value => current_user.id %>
-		<%= f.label :name %> <br />
-		<%= f.text_field :name, :class => "form-control",
-			:placeholder => "Enter group name..." %>
-	</div>
-	<div class="form-group">
-		<%= f.submit "Create Group", :class => "btn btn-primary" %> 
-	</div>
+  <div class="form-group">
+    <%= f.hidden_field :user_id, :value => current_user.id %>
+    <%= f.label :name %> <br />
+    <%= f.text_field :name, :class => "form-control",
+      :placeholder => "Enter group name..." %>
+  </div>
+  <div class="form-group">
+    <%= f.submit "Create Group", :class => "btn btn-primary" %> 
+  </div>
 <% end %>

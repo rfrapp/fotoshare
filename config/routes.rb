@@ -27,6 +27,7 @@ Rails.application.routes.draw do
   get 'signup' => 'users#new'
   get 'find'   => 'users#index'
   get 'profile' => 'users#show'
+  get 'home' => 'users#home'
   get 'profile/edit' => 'users#edit'
   post 'signup' => 'users#create'
 
@@ -37,7 +38,13 @@ Rails.application.routes.draw do
   resources :relationships
   resources :account_activations, only: [:edit]
   resources :password_resets,     only: [:new, :create, :edit, :update]
-  resources :user_groups 
+  resources :user_groups
+
+  #============================================================================
+  # Albums and Pictures
+  #============================================================================
+  resources :albums
+  resources :pictures, only: [:new, :create, :edit, :update, :destroy]
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

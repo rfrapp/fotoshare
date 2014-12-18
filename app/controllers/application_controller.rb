@@ -7,8 +7,18 @@ class ApplicationController < ActionController::Base
   include UsersHelper 
   before_action :set_host 
 
-  private 
-  	def set_host 
-  		ActionMailer::Base.default_url_options = {:host => request.host_with_port}
-  	end 
+  private
+
+  # Confirms a logged-in user.
+  def logged_in_user
+    unless logged_in?
+      store_location 
+      flash[:danger] = "Please log in to view this page."
+      redirect_to login_url
+    end
+  end
+
+  def set_host 
+    ActionMailer::Base.default_url_options = {:host => request.host_with_port}
+  end 
 end

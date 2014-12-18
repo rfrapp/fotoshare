@@ -1,0 +1,22 @@
+<% provide(:title, "FotoShare - Upload Picture") %>
+<% provide(:maintitle, "Upload Picture") %>
+
+<%= form_for(@picture, html: { multipart: true }) do |f| %>
+  <%= render 'shared/picture_error_messages' %>
+
+  <div class="form-group">
+    <%= f.label :caption, "Picture caption" %> <br />
+    <%= f.text_field :caption, :class => "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%=f.label :album_id, "Album" %> <br />
+    <%=f.collection_select(:album_id, current_user.albums, :id, :title) %>
+  </div>
+
+  <div class="form-group">
+    <%= f.file_field :location%> 
+  </div>
+
+  <%= f.submit class: 'btn btn-primary' %>
+<% end %>

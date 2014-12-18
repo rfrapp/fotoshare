@@ -1,10 +1,10 @@
-class Album < ActiveRecord::Base
+class Picture < ActiveRecord::Base
 
   #============================================================================
   # Associations
   #============================================================================
-  belongs_to :user
-  has_many :pictures
+  belongs_to :album
+  mount_uploader :location, PictureUploader
 
   #============================================================================
   # Lambdas
@@ -14,6 +14,6 @@ class Album < ActiveRecord::Base
   #============================================================================
   # Validations
   #============================================================================
-  validates :user_id, presence: true
-  
+  validates :album_id, presence: true
+
 end

@@ -1,0 +1,8 @@
+<% provide(:maintitle, "#{current_user.name}'s Albums") %>
+<% provide(:title, "#{current_user.name}'s Albums") %>
+<ul class="albums">
+  <% if current_user.albums.any? %>
+      <%= render @albums %>
+    <%= will_paginate @albums %>
+  <% end %>
+</ul>

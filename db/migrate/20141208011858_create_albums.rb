@@ -8,6 +8,7 @@ class CreateAlbums < ActiveRecord::Migration
       
       t.timestamps null: false
     end
+    add_foreign_key :albums, :users
     add_index :albums, [:user_id, :created_at]
   end
 end
