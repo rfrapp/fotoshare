@@ -14,45 +14,52 @@
 ActiveRecord::Schema.define(version: 20141208011858) do
 
   create_table "albums", force: true do |t|
-    t.integer  "user_id"
-    t.string   "name"
+    t.string   "title"
+    t.text     "description"
     t.datetime "last_upload"
+    t.integer  "user_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
   end
 
+  add_index "albums", ["user_id", "created_at"], name: "index_albums_on_user_id_and_created_at"
+  add_index "albums", ["user_id"], name: "index_albums_on_user_id"
+
   create_table "relationships", force: true do |t|
+    t.string   "status"
     t.integer  "user_id"
     t.integer  "other_user_id"
-    t.integer  "group_id",      limit: 255
-    t.string   "status"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.integer  "group_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
   end
 
   create_table "user_groups", force: true do |t|
-    t.integer  "user_id"
     t.string   "name"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
+  add_index "user_groups", ["user_id", "created_at"], name: "index_user_groups_on_user_id_and_created_at"
+  add_index "user_groups", ["user_id"], name: "index_user_groups_on_user_id"
+
   create_table "users", force: true do |t|
-    t.string   "firstname",         limit: 255
-    t.string   "lastname",          limit: 255
-    t.string   "username",          limit: 255
-    t.string   "email",             limit: 255
-    t.string   "password_digest",   limit: 255
-    t.string   "remember_digest",   limit: 255
-    t.datetime "last_login"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "admin"
-    t.string   "activation_digest", limit: 255
-    t.boolean  "activated",                     default: false
-    t.datetime "activated_at"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "username"
+    t.string   "email"
+    t.string   "password_digest"
+    t.string   "remember_digest"
+    t.string   "activation_digest"
     t.string   "reset_digest"
+    t.boolean  "activated",         default: false
+    t.boolean  "admin"
+    t.datetime "activated_at"
     t.datetime "reset_sent_at"
+    t.datetime "last_login"
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
   end
 
 end

@@ -1,12 +1,12 @@
 class CreateRelationships < ActiveRecord::Migration
   def change
     create_table :relationships do |t|
-      t.integer :user_id
-      t.integer :other_user_id
-      t.integer :group_id
-      t.string :status 
-
-      t.timestamps
+      t.string :status
+      t.references :user
+      t.references :other_user
+      t.references :group
+      
+      t.timestamps null: false
     end
   end
 end
